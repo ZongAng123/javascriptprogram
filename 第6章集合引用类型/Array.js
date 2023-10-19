@@ -63,4 +63,53 @@ const a2 = Array.from(a1);
 console.log("对现有数组执行浅复制",a1);
 // alert(a1 === a2); //false
 
+// 6.2.2 数组空位
+/*
+使用数组字面量出实话数组时，可以使用一串逗号来创建空位。
+*/ 
 
+const options = [,,,,,];//创建包含5个元素的数组
+console.log(options.length);//5
+console.log(options);// [空属性 × 5]
+
+/*
+ES6新增的方法和迭代器与早期ES版本中存在的方法行为不同。ES6新增方法普遍将这些空位当成存在的元素，只过不为undefine
+*/ 
+
+const optionsss = [1,,,,5];
+
+for(const option of optionsss){
+    console.log(option === undefined);
+}
+
+
+// 6.2.3 数组索引
+/*
+要取得或设置索引的值，需要使用中括号并提供相应的数字索引，如下所示
+*/ 
+let colors5 =["红色","蓝色","绿色"];//定义一个字符串数组
+console.log(colors5[0]);
+colors5[2] = "黑色";
+colors5[3] = "苹果红";
+console.log(colors5);
+
+// 6.2.4 检测数据
+/*
+一个经典的ES问题是判断一个对象是不是数组。
+在只有一个网页(因而只有一个全局作用域)的情况下，使用instanceof操作符足矣
+*/ 
+
+if (value instanceof Array) {
+    // 操作数组
+}
+/*
+使用instanceof的问题是假定只有一个全局执行上下文。
+如果网页里有多个框架，则可能涉及两个不同的全局执行上下文，因此就会有两个不同版本的Array构造函数。
+如果要把数组从一个框架传给另一个框架，则这个数组的构造函数将有别于在第二个框架内本地创建的数组。
+*/ 
+
+// 为了解决这个问题，ES提供了Array.isArray()方法
+
+if (Array.isArray(value)) {
+    // 操作数组
+}
